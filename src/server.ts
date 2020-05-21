@@ -1,11 +1,19 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import routes from './routes';
+
+require('dotenv').config();
 
 const app = express();
 
+mongoose.connect(`${process.env.MongoUrl}`, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false
+    });
+
 app.use(express.json());
 
-app.get('/', (request, response) => {
-    return response.json({massage: "hello world"})
-})
+app.use(routes);
 
-app.listen(3333);
+app.listen(process.env.PORT || 3333);
