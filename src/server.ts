@@ -1,19 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import routes from './routes';
+import routes from './routes/index';
+import './database';
 
-require('dotenv').config();
+const server = express();
 
-const app = express();
+server.use(express.json());
 
-mongoose.connect(`${process.env.MongoUrl}`, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false
-    });
+server.use(routes);
 
-app.use(express.json());
-
-app.use(routes);
-
-app.listen(process.env.PORT || 3333);
+server.listen(process.env.PORT || 3000);
