@@ -3,16 +3,17 @@ import ToolsRepository from '../repositories/ToolsRepoisitory';
 import {getCustomRepository} from 'typeorm';
 
 const toolsRouter = Router();
-const toolsRepository = getCustomRepository(ToolsRepository);
 
-toolsRouter.get('/', (request, response) => {
-    const tools = toolsRepository.all();
+toolsRouter.get('/', async (request, response) => {
+    const toolsRepository = getCustomRepository(ToolsRepository);
+    const tools = await toolsRepository.all();
     return response.json(tools);
 });
 
-toolsRouter.post('/', (request, response) => {
+toolsRouter.post('/', async (request, response) => {
+    const toolsRepository = getCustomRepository(ToolsRepository);
     const { title, link, description, tags} = request.body;
-    const tool = toolsRepository.create({title, link, description, tags});
+    const tool = await toolsRepository.create({title, link, description, tags});
 
     return response.json(tool);
 });

@@ -1,6 +1,6 @@
 import {ObjectID, Entity, Column, CreateDateColumn, UpdateDateColumn, ObjectIdColumn} from 'typeorm';
 
-@Entity('tools')
+@Entity('tool')
 class Tool {
   @ObjectIdColumn()  
   id: ObjectID;

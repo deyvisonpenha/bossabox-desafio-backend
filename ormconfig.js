@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 module.exports = {
+  "name": "default",
   "type": "mongodb",
   "url": `${process.env.MongoUrl}`,
   "useNewUrlParser": true,
